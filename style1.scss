@@ -8,3 +8,31 @@ h1 {
 p {
   color: $primary-color;
 }
+
+$first-width: 5px;
+$second-width: 5px;
+
+@function atur-width($n) {
+  @return $n * $first-width + ($n - 1) * $second-width;
+}
+
+#set_width {
+  padding-left: atur-width(10);
+}
+
+@mixin pop-up($size, $is-failed: false) {
+    font-size: $size;
+  
+    @if $is-failed {
+      color: red;
+    } @else {
+      color: green;
+    }
+  }
+  
+  .text-failed {
+    @include pop-up(20px, $is-failed: true);
+  }
+  .text-success {
+    @include pop-up(15px, $is-failed: true);
+  }
