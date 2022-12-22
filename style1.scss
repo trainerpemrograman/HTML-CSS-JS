@@ -1,0 +1,10 @@
+$primary-color: blue;
+
+h1 {
+  $primary-color: green !global;
+  color: $primary-color;
+}
+
+p {
+  color: $primary-color;
+}

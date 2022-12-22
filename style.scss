@@ -1,0 +1,186 @@
+@use 'button'; 
+@import "ukuran";
+@import "navigasi";
+
+
+$btn-color: button.$color; //mengakses variabel $color menggunakan namespace
+
+button{
+  background-color: $btn-color;
+}
+
+header {
+  background-color: black;
+  color: white;
+
+  h1 {
+    font-size: 36px;
+  }
+}
+
+$font-stack: Helvetica, sans-serif;
+$background-color: rgb(230, 231, 233);
+
+body {
+    font: 100% $font-stack;
+    background-color: $background-color;
+}
+
+$primary-color: blue;
+
+h1 {
+  $primary-color: green !global;
+  color: $primary-color;
+  font-size: $ukuranJudul;
+}
+
+p {
+  color: $primary-color;
+}
+
+// /*definisikan variable untuk warna primer*/
+// $primary : #00AFFF;
+
+// /*gunakan fungsi lighten() untuk menentukan kode warna hover, dan definisikan sebagai variable*/
+// $hover: lighten($primary, 20%);
+
+// button {
+//   background-color: $primary; /* gunakan variabel primer */
+//   color: white;
+// }
+
+// button::hover {
+//   background-color: $hover;/* gunakan variabel hover */
+// }
+
+// $font-stack: Helvetica, sans-serif;
+// $background-color: rgb(230, 231, 233);
+
+// body {
+//   font: 100% $font-stack;
+//   background-color: $background-color;
+// }
+// $primary-color: blue;
+
+// h1 {
+//   $primary-color: green;
+//   color: $primary-color;
+// }
+
+// p {
+//   color: $primary-color;
+// }
+
+// $primary-color: blue;
+
+// h1 {
+//   $primary-color: green !global;
+//   color: $primary-color;
+// }
+
+// p {
+//   color: $primary-color;
+// }
+// $default-font: 'Lucida';
+
+// p {
+//   font-family: $default-font, "Arial", sans-serif;
+// }
+
+// $first-width: 5px;
+// $second-width: 5px;
+
+// @function atur-width($n) {
+//   @return $n * $first-width + ($n - 1) * $second-width;
+// }
+
+// #set_width {
+//   padding-left: atur-width(10);
+// }
+
+$base-font-size: 16px;
+
+@mixin text-size($scale) {
+  font-size: $base-font-size * $scale;
+}
+
+body {
+ @include text-size(1);
+}
+
+.text-header {
+  @include text-size(5);
+  font-weight: bold;
+  color: cobalt;
+}
+
+.text-subheader {
+  @include text-size(1.5);
+  color: grey;
+}
+
+.text-title {
+  @include text-size(1.25);
+}
+
+
+@mixin base-button($bg-color) {
+    font-family: "Fakt Soft Pro";
+    font-size: 12px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 16px;
+    color: white;
+    background-color: $bg-color;
+  }
+  
+  .button-primary {
+    @include base-button(blue);
+  }
+  
+  .button-secondary {
+    @include base-button(grey);
+  }
+
+  @mixin pop-up($size, $is-failed: false) {
+    font-size: $size;
+  
+    @if $is-failed {
+      color: red;
+    } @else {
+      color: green;
+    }
+  }
+  
+  .text-failed {
+    @include pop-up(20px, $is-failed: true);
+  }
+  .text-success {
+    @include pop-up(15px, $is-failed: false);
+  }
+
+
+  @mixin profile-card($color, $size, $position) {
+    background-color: $color;
+  
+    @if $position == left {
+      padding-left: $size;
+    } @else if $position == right {
+      padding-right: $size;
+    } @else {
+      @error "Left-right only"
+    }
+  }
+  
+  .post {
+    @include profile-card(rgb(185, 111, 111), 50px, left);
+  }
+
+
+  $base-font-size: 12px;
+
+@for $i from 1 to 5 {
+  .text-display-#{$i} {
+    font-size: $base-font-size * $i;
+  }
+}
